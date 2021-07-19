@@ -17,7 +17,7 @@ hdr_segment_init(struct rte_mbuf *hdr_segment, struct rte_mbuf *pkt,
 	/* Copy MBUF metadata */
 	hdr_segment->nb_segs = 1;
 	hdr_segment->port = pkt->port;
-	hdr_segment->ol_flags = pkt->ol_flags;
+	hdr_segment->ol_flags = pkt->ol_flags & ~(EXT_ATTACHED_MBUF | IND_ATTACHED_MBUF);
 	hdr_segment->packet_type = pkt->packet_type;
 	hdr_segment->pkt_len = pkt_hdr_offset;
 	hdr_segment->data_len = pkt_hdr_offset;
