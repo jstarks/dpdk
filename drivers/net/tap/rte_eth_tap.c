@@ -727,8 +727,7 @@ pmd_tx_burst(void *queue, struct rte_mbuf **bufs, uint16_t nb_pkts)
 			mbuf_in->ol_flags |= PKT_TX_TCP_CKSUM;
 
 			/* gso size is calculated without RTE_ETHER_CRC_LEN */
-			hdrs_len = mbuf_in->l2_len + mbuf_in->l3_len +
-					mbuf_in->l4_len;
+			hdrs_len = mbuf_in->l3_len + mbuf_in->l4_len;
 			tso_segsz = mbuf_in->tso_segsz + hdrs_len;
 			if (unlikely(tso_segsz == hdrs_len) ||
 				tso_segsz > *txq->mtu) {
